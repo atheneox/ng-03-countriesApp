@@ -1,0 +1,34 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th> # </th>
+            <th> Flag </th>
+            <th> Name </th>
+            <th> Population</th>
+            <th> Show </th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let country of countries; let i = index" class="animate__animated animate__zoomIn">
+
+        <th> {{ i + 1 }} </th>
+        <th>
+            <img class="small-flag" [src]="country.flags.png" alt="">
+        </th>
+        <th> {{ country.capital }} - {{ country.name.common }} </th>
+
+        <th> {{ country.population | number}} </th>
+
+        <div *ngIf="country.cca2 !==undefined;">
+            <th>
+                <a [routerLink]="['/country', country.cca2]">Show...</a>
+            </th>
+        </div>
+
+        <div *ngIf="country.alpha2Code !==undefined;">
+            <th>
+                <a [routerLink]="['/country', country.alpha2Code]">Show...</a>
+            </th>
+        </div>
+
+    </tbody>
+</table>

@@ -1,0 +1,35 @@
+<div class="animate__animated animate__rollIn">
+    <h2> By Country</h2>
+    <hr>
+
+    <div class="row">
+        <div class="col">
+            <app-country-input (onEnter)="search($event)" (onDebounce)="sugest($event)"
+                placeholder="Search by country...">
+            </app-country-input>
+        </div>
+    </div>
+
+    <ul *ngIf="showSuggested" class="list-group">
+        <li *ngFor="let scountries of suggestedCountries" class="list-group-item list-group-item-action">
+            <a class="nav-link" [routerLink]="['/country',scountries.cca2]"> {{ scountries.name.common }}</a>
+        </li>
+
+        <li class="list-group-item list-group-item-action" (click)="searchSuggested(query)">
+            <a class="nav-link"> Buscar "{{ query }}" </a>
+        </li>
+    </ul>
+
+    <hr>
+
+    <div *ngIf="error" class="alert alert-danger">
+        Nothing was found with term: "{{ query }}"
+    </div>
+
+    <div *ngIf="countries.length>0" class="row">
+        <div class="col">
+            <app-country-table [countries]="countries"></app-country-table>
+        </div>
+    </div>
+
+</div>
